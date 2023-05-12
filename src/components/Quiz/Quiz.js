@@ -1,15 +1,14 @@
-import React, { useContext } from 'react';
-import QuizContext from '../QuizContext/QuizContext';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { answerQuestion } from '../Redux/quizSlice';
 
 function Quiz() {
-  const { questions, score, setScore, currentQuestion, setCurrentQuestion } =
-    useContext(QuizContext);
+  const dispatch = useDispatch();
+  const questions = useSelector(state => state.quiz.questions);
+  const currentQuestion = useSelector(state => state.quiz.currentQuestion);
 
   const handleAnswer = isCorrect => {
-    if (isCorrect) {
-      setScore(score + 1);
-    }
-    setCurrentQuestion(currentQuestion + 1);
+    dispatch(answerQuestion(isCorrect));
   };
 
   return (

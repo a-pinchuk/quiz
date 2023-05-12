@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import QuizContext from '../QuizContext/QuizContext';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 function Result() {
-  const { score } = useContext(QuizContext);
+  const score = useSelector(state => state.quiz.score);
 
   return (
     <div>
